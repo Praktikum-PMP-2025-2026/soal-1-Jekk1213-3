@@ -48,6 +48,7 @@ void awazDel (gerbong** utama, int a){
     if((*utama)->pendataan==a){ //incase ternyata yang dihapus itu gerbong pertama
         gerbong* temp=*utama;
         *utama=(*utama)->next;
+        free(temp);
         return;
     }
 
@@ -63,6 +64,7 @@ void awazDel (gerbong** utama, int a){
     if(tertentu->next!=NULL){
         gerbong* temp=tertentu->next;
         tertentu->next=tertentu->next->next; //-> ditulis 2x soalnya untuk lewatin gerbong yang dihapus
+        free(temp);
     }
 }
 
@@ -115,19 +117,19 @@ int main() {
         //membaca jenis op, x
         scanf("%d %d", &op, &x);
 
-        if(op==1){ //opsi 1
+        if(op==1){ //opsi 1 tambah depan 
             awazDepan(&utama, x);
         }
 
-        else if(op==2){ //opsi 2
+        else if(op==2){ //opsi 2 tambah belakang
             awazBelakang(&utama, x);
         }
 
-        else if(op==3){ // opsi 3
+        else if(op==3){ // opsi 3 hapus hapus
             awazDel(&utama, x);
         }
 
-        else if (op==4){ //opsi 4
+        else if (op==4){ //opsi 4 find gerbong
             temuGerbong(utama, x);
         }
     }
